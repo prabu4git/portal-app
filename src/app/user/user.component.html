@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<!---
+<div class="container" style="height:950px;width:1350px;">
+  <div class="panel-group" style="margin-top:10px; background: #f5f5f5;">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span>User Management</span>
+      </div>
+      --->
+      <kendo-grid [data]="gridData | async"
+                  [height]="600"
+                  [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+                  [pageable]="true" [sortable]="true"
+                  (dataStateChange)="onStateChange($event)"
+                  (edit)="editHandler($event)"
+                  (cancel)="cancelHandler($event)"
+                  (save)="saveHandler($event)"
+                  (remove)="removeHandler($event)"
+                  (add)="addHandler($event)"
+                  [navigable]="true"
+      >
+        <ng-template kendoGridToolbarTemplate>
+          <button type="button" kendoGridAddCommand class="btn btn-primary"> <span class="fa fa-pencil"></span> Add</button>
+        </ng-template>
+
+
+        <kendo-grid-command-column title="Action" width="230">
+          <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand class="btn btn-primary"><span class="fa fa-pencil"></span> Edit</button>&nbsp;
+            <button kendoGridRemoveCommand type="button" class="btn btn-secondary"><span class="fa fa-trash"></span> Remove</button>
+            <button kendoGridSaveCommand  class="btn btn-success" [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>&nbsp;
+            <button kendoGridCancelCommand class="btn btn-secondary">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+          </ng-template>
+        </kendo-grid-command-column>
+        <kendo-grid-column field="firstName" title="First Name" width="200">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              First name is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+
+        <kendo-grid-column field="lastName" title="Last Name" width="150">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              Last name is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="email" title="Email" width="250">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              Email is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="roles" title="Role" width="180">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{role(dataItem.roles[0].id)?.role}}
+          </ng-template>
+          <ng-template kendoGridEditTemplate let-column="column"
+                       let-dataItem="dataItem"
+                       let-formGroup="formGroup">
+            <kendo-dropdownlist
+              [data]="roles"
+              (valueChange)="onRoleChanage($event)"
+              textField="role"
+              valueField="id"
+              [valuePrimitive]="true"
+              [formControl]="formGroup.get(column.field)">
+            </kendo-dropdownlist>
+          </ng-template>
+        </kendo-grid-column>
+
+
+        <kendo-grid-column field="street" title="Street" width="200">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              Street is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="unit" title="Unit" width="50">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              Unit is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="city" title="City" width="150">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              City is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="state" title="State" width="100">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              State is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="country" title="Country" width="100">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+             Country is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="zipCode" title="Zip Code" width="150">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              Zipcode is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="phone" title="Phone" width="150">
+          <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+            <input #input class="k-textbox" [formControl]="formGroup.get(column.field)">
+            <kendo-popup
+              [anchor]="input"
+              *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+              popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg"
+            >
+              <span class="k-icon k-i-warning"></span>
+              Phone is required
+            </kendo-popup>
+          </ng-template>
+        </kendo-grid-column>
+        <div *kendoGridDetailTemplate="let dataItem" style="width:700px;">
+          <app-project-details [project]="dataItem"></app-project-details>
+        </div>
+      </kendo-grid>
+</body>
+</html>

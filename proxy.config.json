@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "http://localhost:8080/user-portal",
+    "secure": false,
+    "logLevel" : "debug", // Making Debug Logs in console
+    "changeOrigin": true
+  }
+}

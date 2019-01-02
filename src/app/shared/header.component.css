@@ -1,0 +1,224 @@
+ul#nav {
+  display:block;
+  float:left;
+  font-family:Trebuchet MS,sans-serif;
+  font-size:0;
+  width:100%;
+  margin:200px;
+  padding:0px 0px 0px 0px;
+  background: -moz-linear-gradient(#f5f5f5, #c4c4c4); /* FF 3.6+ */
+  background: -ms-linear-gradient(#f5f5f5, #c4c4c4); /* IE10 */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #c4c4c4)); /* Safari 4+, Chrome 2+ */
+  background: -webkit-linear-gradient(#f5f5f5, #c4c4c4); /* Safari 5.1+, Chrome 10+ */
+  background: -o-linear-gradient(#f5f5f5, #c4c4c4); /* Opera 11.10 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#c4c4c4'); /* IE6 & IE7 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#c4c4c4')"; /* IE8+ */
+  background: linear-gradient(#f5f5f5, #c4c4c4); /* the standard */
+}
+ul#nav,ul#nav ul {
+  list-style:none;
+  margin:0;
+}
+ul#nav,ul#nav .subs {
+  background-color:#444;
+  border:1px solid #454545;
+  border-radius:1px;
+  -moz-border-radius:1px;
+  -webkit-border-radius:1px;
+}
+ul#nav .subs {
+  background-color:#fff;
+  border:2px solid #222;
+  display:none;
+  float:left;
+  left:0;
+  padding:0 6px 6px;
+  position:absolute;
+  top:100%;
+  width:300px;
+  border-radius:7px;
+  -moz-border-radius:7px;
+  -webkit-border-radius:7px;
+}
+ul#nav li:hover>* {
+  display:block;
+}
+ul#nav li:hover {
+  position:relative;
+}
+ul#nav ul .subs {
+  left:100%;
+  position:absolute;
+  top:0;
+}
+ul#nav ul {
+  padding:0 5px 5px;
+}
+ul#nav .col {
+  float:left;
+  width:50%;
+}
+ul#nav li {
+  display:block;
+  float:left;
+  font-size:0;
+  white-space:nowrap;
+}
+ul#nav>li,ul#nav li {
+  margin:0 0 0 5px;
+}
+ul#nav ul>li {
+  margin:5px 0 0;
+}
+ul#nav a:active,ul#nav a:focus {
+  outline-style:none;
+}
+ul#nav a {
+  border-style:none;
+  border-width:0;
+  color:#181818;
+  cursor:pointer;
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  padding:8px 18px;
+  text-align:left;
+  text-decoration:none;
+  text-shadow:#fff 0 1px 1px;
+  vertical-align:middle;
+}
+
+ul#nav ul li {
+  float:none;
+  margin:6px 0 0;
+}
+ul#nav ul a {
+  background-color:#fff;
+  border-color:#efefef;
+  border-style:solid;
+  border-width:0 0 1px;
+  color:#000;
+  font-size:11px;
+  padding:4px;
+  text-align:left;
+  text-decoration:none;
+  text-shadow:#fff 0 0 0;
+
+  border-radius:0;
+  -moz-border-radius:0;
+  -webkit-border-radius:0;
+}
+ul#nav li:hover>a {
+  border-style:none;
+  color:#fff;
+  font-size:13px;
+  font-weight:bold;
+  text-decoration:none;
+  text-shadow:#181818 0 1px 1px;
+}
+ul#nav img {
+  border:none;
+  margin-right:8px;
+  vertical-align:middle;
+}
+ul#nav span {
+  background-position:right center;
+  background-repeat:no-repeat;
+  display:block;
+  overflow:visible;
+  padding-right:0;
+}
+ul#nav ul span {
+  background-image:url('../../assets/images/arrow.png');
+  padding-right:20px;
+}
+ul#nav ul li:hover>a {
+  border-color:#444;
+  border-style:solid;
+  color:#444;
+  font-size:11px;
+  text-decoration:none;
+  text-shadow:#fff 0 0 0;
+}
+ul#nav > li >a {
+  background-color:transparent;
+  height:45px;
+  line-height:25px;
+  border-radius:11px;
+  -moz-border-radius:11px;
+  -webkit-border-radius:11px;
+}
+ul#nav > li:hover > a {
+  background-color:#313638;
+  line-height:25px;
+}
+
+
+
+.container {
+  margin:0px 200px;
+  float:left;
+  position:relative;
+  width:100%;
+  height:100px;
+  background:url(' ') no-repeat 11px 22px ;
+  border:1px solid #454545;
+}
+
+.navTop {
+  background:#60c7c1;
+  display:block;
+  width:100%;
+  min-width: 1200px;
+  position:absolute;
+  color:#fff;
+  top:0;
+  left:0%;
+  padding: 0px 0px 15px 15px;
+  height:60px;
+}
+
+.navTop ul {
+  display: inline-block;
+  padding: 5px;
+  list-style:none;
+  color:#000;
+}
+.navTop li {
+  display:inline;
+  color:#000;
+}
+.navTop a{
+  text-align:right;
+  color:#000;
+}
+.navTop a:hover{
+  color:#fff;
+}
+
+
+.app-branding {
+  background-color: #05253e;
+  font: 200% AntennaBold,sans-serif;
+  height: 50px;
+  width:100%;
+  margin-left:0;
+  margin-top: 30px;
+  padding: 0px 0px 0;
+  color: #036;
+}
+
+.app-branding a, .app-branding a:link, .app-branding a:visited {
+  color: #ffffff;
+  font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+  font-size: 100%;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.menu-branding {
+  margin-left:0;
+  margin-top: 60px;
+  padding: 0px 0px 0;
+  color: #036;
+}
